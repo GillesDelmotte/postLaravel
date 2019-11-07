@@ -28,9 +28,6 @@
             Écrit par : <a href="/author/{{$post->author->id}}/posts">{{$post->author->name}}</a>
         </p>
     </div>
-    <br>
-    <br>
-    <br>
     @can('forceDelete', $post)
     <form action="/posts/{{$post->id}}" method="POST">
         @csrf
@@ -38,6 +35,22 @@
         <button type="submit">supprimer le post</button>
     </form>
     @endcan
+    <div>
+        <h2>ajouter un commentaire</h2>
+        <form action="/comments" method="POST">
+            @csrf
+            <input type="hidden" name="postId" value="{{$post->id}}">
+            <label for="comment">Votre commentaire&nbsp;:</label>
+            <br>
+            <textarea name="comment" id="comment" cols="100" rows="10"></textarea>
+            <br>
+            <button type="submit">Poster le commentaire</button>
+        </form>
+    </div>
+    <div>
+        <h2>Les commentaires du post</h2>
+        ...
+    </div>
 </body>
 
 </html>

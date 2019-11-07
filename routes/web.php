@@ -28,6 +28,8 @@ Route::post('/posts', 'PostController@store')->middleware('auth');
 Route::put('/posts/{post}', 'PostController@update')->middleware('auth');
 Route::get('/author/{user}/posts', 'AuthorPostController@index');
 
+Route::post('/comments', 'CommentController@store')->middleware('auth');
+
 
 
 Auth::routes();
