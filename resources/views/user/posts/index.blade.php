@@ -20,7 +20,7 @@
     <div>
         @foreach($posts as $post)
         <article>
-            <h2>{{$post->title}}</h2>
+            <h2><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
             <p>{{$post->content}}</p>
         </article>
         @endforeach
