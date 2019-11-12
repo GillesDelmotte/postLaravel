@@ -20,7 +20,7 @@
     </p>
     <div>
         <time datetime="{{$post->created_at}}">
-            {{$post->created_at->diffForHumans()}}
+            {{$post->published_at->diffForHumans()}}
         </time>
     </div>
     <div>
@@ -49,7 +49,23 @@
     </div>
     <div>
         <h2>Les commentaires du post</h2>
-        ...
+        <div>
+            @foreach($post->comments as $comment)
+            <div>
+                <p>{{$comment->content}}</p>
+                <span>commentaire posté par&nbsp;: {{$comment->user->name}}</span>
+                @can('forceDelete', $comment)
+                <form action="/comments/{{$comment->id}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit">supprimer le commentaire</button>
+                </form>
+                @endcan
+            </div>
+            <hr>
+            @endforeach
+        </div>
+
     </div>
 </body>
 
