@@ -17,13 +17,15 @@ class UsersTableSeeder extends Seeder
             'name' => 'Gilles Delmotte',
             'email' => 'gilles.delmotte@outlook.be',
             'password' => Hash::make('azerty'),
-            'is_admin' => 1
+            'is_admin' => 1,
+            'is_author' => 1
         ]);
         User::create([
             'name' => 'Dominique Vilain',
             'email' => 'dvil@gmail.com',
             'password' => Hash::make('azerty'),
-            'is_admin' => 0
+            'is_admin' => 0,
+            'is_author' => 1
         ]);
     }
 }
