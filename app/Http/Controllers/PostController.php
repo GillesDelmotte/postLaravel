@@ -28,33 +28,36 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = Str::slug($request->title, '-');
         $post->content = $request->content;
+
+        $published_at = $request->published_at_date . ' '  . $request->published_at_hour . ':00';
+
+        $post->published_at = $published_at;
         $post->owner_id = auth()->id();
 
         $post->save();
 
-        $posts = Post::with('author')->paginate(5);
-        return view('post.index', ['posts' => $posts]);
+        return redirect('/');
     }
 
-    public function show(Post $post)
+    public function show($id)
     {
+        $post = Post::findOrFail($id);
         return view('post.show', ['post' => $post]);
     }
 
     public function edit(Post $post)
     {
-        //$this->authorize('update', $post);
-
         return view('post.edit', ['post' => $post]);
     }
 
     public function update(Request $request, Post $post)
     {
 
-        //$this->authorize('update', $post);
-
         $post->title = $request->title;
         $post->content = $request->content;
+
+        $published_at = $request->published_at_date . ' ' . $request->published_at_hour . ':00';
+        $post->published_at = $published_at;
 
         $post->save();
 

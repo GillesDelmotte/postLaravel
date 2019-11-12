@@ -24,6 +24,14 @@
             <input type="text" name="title" id="title" style="width:100%; display:block">
         </div>
         <div>
+            <label for="published_at_date">date de publication</label><br>
+            <input type="date" name="published_at_date" id="published_at_date">
+        </div>
+        <div>
+            <label for="published_at_hour">heure de publication</label><br>
+            <input type="time" name="published_at_hour" id="published_at_hour">
+        </div>
+        <div>
             <label for="content">contenu de l'article</label><br>
             <textarea name="content" id="content" cols="100" rows="20"></textarea>
         </div>

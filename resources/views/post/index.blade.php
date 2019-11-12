@@ -16,7 +16,7 @@
 
 
     <h1>
-        Mon blog! - Les articles
+        Mon blog! - Les articles ({{$posts->total()}})
     </h1>
     <div>
         @foreach($posts as $post)
@@ -24,6 +24,8 @@
             <h2><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
             <p>{{$post->content}}</p>
             <span>Un Article posté par : <a href="/author/{{$post->author->id}}/posts">{{$post->author->name}}</a></span>
+            || <span>Un Article publié le : {{$post->published_at->diffForHumans()}}</span>
+            || <span>Nbr de commentaires : {{$post->comments()->count()}}</span>
         </article>
         <br>
         @can('update', $post)

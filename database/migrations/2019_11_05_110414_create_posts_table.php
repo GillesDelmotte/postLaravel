@@ -19,6 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->text('content');
             $table->unsignedBigInteger('owner_id');
+            $table->softDeletes();
+            $table->timestamp('published_at')->useCurrent();
             $table->timestamps();
             $table->foreign('owner_id')->references('id')->on('users');
         });
