@@ -15,15 +15,20 @@
     @endcomponent
 
     <h1>
-        Les article de {{$user->name}}
+        Les article de {{$user->name}} ({{$posts->total()}})
     </h1>
     <div>
         @foreach($posts as $post)
         <article>
             <h2><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
             <p>{{$post->content}}</p>
+            <span>Un Article publié le : {{$post->published_at->diffForHumans()}}</span>
         </article>
+        @can('update', $post)
+        <a href="/posts/{{$post->id}}/edit">modifier le post</a>
+        @endcan
         @endforeach
+
     </div>
     <div>
         {{$posts->links()}}
