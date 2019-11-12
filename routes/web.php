@@ -22,13 +22,16 @@ Route::get('/contact', function () {
 Route::get('/', 'PostController@index');
 Route::get('/posts/create', 'PostController@create')->middleware('auth');
 Route::delete('/posts/{post}', 'PostController@destroy')->middleware(['auth', 'can:forceDelete,post']);
-Route::get('/posts/{post}', 'PostController@show');
+Route::get('/posts/{id}', 'PostController@show');
 Route::get('/posts/{post}/edit', 'PostController@edit')->middleware(['auth', 'can:update,post']);
 Route::post('/posts', 'PostController@store')->middleware('auth');
 Route::put('/posts/{post}', 'PostController@update')->middleware('auth');
 Route::get('/author/{user}/posts', 'AuthorPostController@index');
 
 Route::post('/comments', 'CommentController@store')->middleware('auth');
+
+Route::delete('/comments/{comment}', 'CommentController@destroy')->middleware(['auth', 'can:forceDelete,comment']);
+
 
 
 
